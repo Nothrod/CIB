@@ -5,71 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Club Informatique de Bethoncourt</title>
     <meta name="description" content="Une aide informatique à votre rythme à Bethoncourt. Retrouvez-nous le mercredi de 14h à 18h. Conseils, réparation et entretien de votre ordinateur.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
   </head>
   <body>
-    <header>
-      <div class="wrap nav">
-        <img class="logo" src="logo.png" alt="Club Informatique de Bethoncourt">
-        <nav aria-label="Navigation principale">
-			<a href="/youtube-mp3">YouTube en MP3</a>
-			<a href="/convertisseur">Convertisseur de fichiers</a>
-			<a href="/qrcode.html">Créer un QR code gratuit</a>
-			<a href="#contact">Nous trouver ↗</a>
-        </nav>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/"><img src="/assets/logo.png" alt="Club Informatique de Bethoncourt" width="2172" height="724"></a>
+        <a class="button secondary" href="#contact">Nous trouver <span aria-hidden="true">↓</span></a>
       </div>
     </header>
 
-    <main class="wrap">
+    <main class="wrap home">
       <section class="hero">
-        <div>
-          <p class="eyebrow">Club Informatique de Bethoncourt</p>
+        <div class="hero-content">
           <h1>L’informatique,<br><span>tout simplement.</span></h1>
           <p class="intro">Un ordinateur qui ralentit ? Besoin d’un conseil ou d’un coup de main ? Nous vous aidons à comprendre et à utiliser votre matériel, à votre rythme.</p>
-          <a class="button" href="#contact">Contacter le club <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="button primary" href="#services-en-ligne">Découvrir nos outils <span aria-hidden="true">↓</span></a>
         </div>
-        <aside class="visit">
-          <p class="eyebrow">Retrouvons-nous au club</p>
+        <aside class="visit" aria-label="Horaires du club">
           <h2>Chaque mercredi</h2>
-          <p class="hours">14h — 18h</p>
-          <hr>
-          <p>Débutant ou déjà à l’aise, venez avec vos questions. Nous prenons le temps de vous accompagner.</p>
+          <p class="hours">14h – 18h</p>
+          <a href="#contact">Venir au club <span aria-hidden="true">↓</span></a>
         </aside>
+      </section>
+
+      <section class="online-tools" id="services-en-ligne" aria-labelledby="online-title">
+        <h2 id="online-title">Services en ligne</h2>
+        <div class="tool-grid">
+          <a class="tool-button" href="/services/qrcode/">
+            <span class="tool-icon" aria-hidden="true">▦</span>
+            <span class="tool-copy">
+              <strong>Générateur de QR code</strong>
+              <span>Personnalisez un QR code et téléchargez-le en PNG ou SVG.</span>
+            </span>
+            <span class="tool-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="tool-button" href="/services/convertisseur/">
+            <span class="tool-icon" aria-hidden="true">⇄</span>
+            <span class="tool-copy">
+              <strong>Convertisseur de fichiers</strong>
+              <span>Convertissez vos PDF et vos images JPEG, PNG ou WebP.</span>
+            </span>
+            <span class="tool-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="tool-button" href="/services/youtube-mp3/">
+            <span class="tool-icon" aria-hidden="true">♫</span>
+            <span class="tool-copy">
+              <strong>YouTube en MP3</strong>
+              <span>Récupérez l’audio d’une vidéo ou d’un Short au format MP3.</span>
+            </span>
+            <span class="tool-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </section>
 
       <section class="services" id="services">
         <div class="section-title">
-          <h2>Un coup de main, à chaque étape.</h2>
-          <p>Des explications simples, des solutions concrètes.</p>
+          <h2>L’accompagnement au club</h2>
         </div>
         <div class="service-grid">
           <article class="service">
-            <span class="num">01 / APPRENDRE</span>
             <h3>Une aide personnalisée</h3>
             <p>Prenez en main votre ordinateur, vos logiciels ou Internet. Nous vous guidons pas à pas, selon vos besoins.</p>
           </article>
           <article class="service">
-            <span class="num">02 / CHOISIR</span>
             <h3>Des conseils avant d’acheter</h3>
             <p>Ordinateur, écran ou accessoires : nous vous aidons à choisir un équipement adapté à votre usage et à votre budget.</p>
           </article>
           <article class="service">
-            <span class="num">03 / RÉPARER</span>
             <h3>Un ordinateur qui fonctionne</h3>
             <p>Panne de matériel, logiciel bloqué ou message d’erreur : nous recherchons la cause et vous aidons à résoudre le problème.</p>
           </article>
           <article class="service">
-            <span class="num">04 / ENTRETENIR</span>
             <h3>Un nettoyage complet</h3>
             <p>Dépoussiérage de l’ordinateur, suppression des fichiers inutiles et des logiciels indésirables : un entretien à l’intérieur comme à l’écran.</p>
           </article>
           <article class="service">
-            <span class="num">05 / AMÉLIORER</span>
             <h3>Des composants remplacés</h3>
             <p>Disque de stockage, mémoire ou autre pièce : nous vous accompagnons pour remplacer un composant défectueux ou améliorer votre ordinateur.</p>
           </article>
           <article class="service">
-            <span class="num">06 / COMPRENDRE</span>
             <h3>Des réponses sans jargon</h3>
             <p>Pas besoin de connaître les mots techniques. Expliquez-nous simplement ce qui vous pose problème, nous regardons ensemble.</p>
           </article>
@@ -93,28 +109,24 @@
 
       <section class="contact" id="contact">
         <div>
-          <p class="eyebrow">À bientôt à Bethoncourt</p>
-          <h2>Parlons de votre besoin.</h2>
+          <h2>Nous trouver</h2>
           <p class="lead">Une question avant de venir ? Appelez-nous ou envoyez-nous un message.</p>
-          <a class="contact-link" href="tel:+33662945541">06 62 94 55 41 ↗</a>
-          <a class="contact-link email" href="mailto:informatique.bethoncourt@gmail.com">informatique.bethoncourt@gmail.com ↗</a>
+          <a class="contact-link" href="tel:+33662945541">06 62 94 55 41 ↗︎</a>
+          <a class="contact-link email" href="mailto:informatique.bethoncourt@gmail.com">informatique.bethoncourt@gmail.com ↗︎</a>
           <p class="schedule"><strong>Ouvert le mercredi de 14h à 18h.</strong></p>
         </div>
         <div class="map-box">
           <iframe class="map" title="Emplacement du Club Informatique de Bethoncourt" loading="lazy" src="https://maps.google.com/maps?q=47.53037969621469,6.7917167064203054&amp;z=16&amp;output=embed"></iframe>
           <div class="map-caption">
             <strong>● Club Informatique de Bethoncourt</strong>
-            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=47.53037969621469%2C6.7917167064203054" target="_blank" rel="noopener noreferrer">Itinéraire ↗</a>
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=47.53037969621469%2C6.7917167064203054" target="_blank" rel="noopener noreferrer">Itinéraire ↗︎</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="wrap foot">
-        <span>© 2026 Club Informatique de Bethoncourt</span>
-        <span>L’informatique à votre rythme.</span>
-      </div>
+    <footer class="site-footer">
+      <div class="wrap">© 2026 Club Informatique de Bethoncourt</div>
     </footer>
   </body>
 </html>

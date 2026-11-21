@@ -5,25 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Convertissez vos fichiers PDF, JPEG, PNG et WebP directement dans votre navigateur.">
   <title>Convertisseur de fichiers | Club Informatique de Bethoncourt</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./page.js"></script>
 </head>
 <body>
-  <header>
-    <div class="wrap site-header">
-      <a href="/" class="brand">Club Informatique<span> de Bethoncourt</span></a>
-      <a href="/" class="home">← Accueil</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/"><img src="/assets/logo.png" alt="Club Informatique de Bethoncourt" width="2172" height="724"></a>
+      <a class="button secondary" href="/#services-en-ligne"><span aria-hidden="true">←</span> Tous les outils</a>
     </div>
   </header>
-  <main class="wrap">
-    <h1>Convertisseur de fichiers</h1>
-    <p class="intro">Choisissez un format pour chaque fichier, puis téléchargez les résultats séparément.</p>
+  <main class="wrap tool-page">
+    <div class="tool-heading">
+      <h1>Convertisseur de fichiers</h1>
+      <p class="intro">Choisissez un format pour chaque fichier, puis téléchargez les résultats séparément.</p>
+    </div>
     <section id="drop-zone" class="drop-zone" aria-label="Ajouter des fichiers">
       <div class="upload-icon" aria-hidden="true">⇧</div>
       <p class="drop-title">Glissez-déposez vos fichiers ici</p>
       <button id="browse" type="button" class="button primary">Choisir des fichiers</button>
       <input id="files" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" multiple hidden>
-      <p class="hint">PDF, JPEG, PNG et WebP · 50 Mo par fichier</p>
+      <p class="note hint">PDF, JPEG, PNG et WebP · 50 Mo par fichier</p>
     </section>
     <p id="notice" class="notice" role="status"></p>
     <section id="queue" class="queue" aria-labelledby="queue-title" hidden>
@@ -33,9 +37,12 @@
       </div>
       <ul id="file-list" class="file-list"></ul>
     </section>
-    <p class="privacy">La conversion se fait sur votre appareil. Vos fichiers restent dans votre navigateur.</p>
+    <p class="note">La conversion se fait sur votre appareil. Vos fichiers restent dans votre navigateur.</p>
     <noscript><p>Activez JavaScript pour utiliser le convertisseur.</p></noscript>
   </main>
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Club Informatique de Bethoncourt</div>
+  </footer>
   <template id="file-row">
     <li class="file-row">
       <div class="file-info">
@@ -45,7 +52,7 @@
       <label class="format-label">Format de sortie
         <select class="format"></select>
       </label>
-      <button type="button" class="button remove">Retirer</button>
+      <button type="button" class="button secondary remove">Retirer</button>
       <div class="file-result">
         <p class="file-status" role="status"></p>
         <div class="downloads"></div>
