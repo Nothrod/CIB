@@ -1,20 +1,24 @@
-// server.js
 const express = require('express');
-const path = require('path');
-const youtubeMp3 = require('./youtube-mp3/router');
+const path = require('node:path');
+const youtubeMp3 = require('./routes/youtube-mp3');
 
 const app = express();
-const PORT = process.env.PORT || 3004;
+const port = process.env.PORT || 3004;
 
-// Convertisseur YouTube en MP3
 app.use('/youtube-mp3', youtubeMp3);
 
-// Sert les fichiers du site : HTML, CSS, images…
+app.get(['/qrcode.html', '/qrcode'], (req, res) => {
+  res.redirect(301, '/services/qrcode/');
+});
+app.get(['/convertisseur', '/convertisseur/index.html'], (req, res) => {
+  res.redirect(301, '/services/convertisseur/');
+});
+app.get(['/youtube-mp3', '/youtube-mp3/index.html'], (req, res) => {
+  res.redirect(301, '/services/youtube-mp3/');
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Démarrage du serveur
-app.listen(PORT, () => {
-    console.log(
-        `💻 Club Informatique lancé sur http://localhost:${PORT}`
-    );
+app.listen(port, () => {
+  console.log(`Club Informatique lancé sur http://localhost:${port}`);
 });

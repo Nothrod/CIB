@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Générateur de QR codes — Club Informatique de Bethoncourt</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <script src="./vendor/qr-code-styling.js" defer></script>
+  <script src="./page.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/"><img src="/assets/logo.png" alt="Club Informatique de Bethoncourt" width="2172" height="724"></a>
+      <a class="button secondary" href="/#services-en-ligne"><span aria-hidden="true">←</span> Tous les outils</a>
+    </div>
+  </header>
+  <main class="wrap tool-page tool-page-wide">
+    <div class="tool-heading">
+      <h1>Générateur de QR code</h1>
+      <p class="intro">Ajoutez un lien ou un texte, personnalisez votre QR code, puis téléchargez-le.</p>
+    </div>
+
+    <div class="qr-grid">
+      <section class="panel qr-settings" aria-label="Personnalisation">
+        <label for="data">Votre lien ou votre texte</label>
+        <textarea id="data" maxlength="500"
+          placeholder="https://www.exemple.fr"></textarea>
+        <p class="note">Pour un site, collez l’adresse complète avec https://.</p>
+
+        <label for="color">Couleur du QR code</label>
+        <input id="color" type="color" value="#063c47">
+        <p class="note">Privilégiez une couleur foncée sur le fond blanc.</p>
+
+        <label for="shape">Forme des points</label>
+        <select id="shape">
+          <option value="square">Carrés</option>
+          <option value="rounded">Arrondis</option>
+          <option value="dots">Ronds</option>
+        </select>
+
+        <label for="logo">Votre logo — facultatif</label>
+        <input id="logo" type="file" accept="image/png,image/jpeg">
+        <p class="note">PNG ou JPG, 2 Mo maximum.</p>
+        <button id="remove" class="button secondary" type="button">Retirer le logo</button>
+      </section>
+
+      <section class="panel qr-preview" aria-label="Aperçu et téléchargement">
+        <h2>Aperçu</h2>
+        <div id="qr"></div>
+        <p id="status" role="status">Saisissez un lien ou un texte.</p>
+        <div class="qr-actions">
+          <button id="png" class="button primary" type="button" disabled>Télécharger PNG</button>
+          <button id="svg" class="button secondary" type="button" disabled>Télécharger SVG</button>
+        </div>
+        <p class="note">
+          PNG : pour partager une image.<br>
+          SVG : pour imprimer en haute qualité.
+        </p>
+        <p class="note">
+          Testez votre QR code avec votre téléphone avant de l’imprimer.
+          Votre texte et votre logo sont traités dans votre navigateur.
+        </p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Club Informatique de Bethoncourt</div>
+  </footer>
+</body>
+</html>

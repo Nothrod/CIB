@@ -97,7 +97,7 @@ function showDownloads(row, outputs) {
     const downloadName = `${baseName}${suffix}.${target}`;
     link.href = URL.createObjectURL(blob);
     link.download = downloadName;
-    link.className = 'button download';
+    link.className = 'button secondary';
     link.textContent = multiPage ? `↓ Page ${page}` : '↓ Télécharger';
     link.setAttribute('aria-label', `Télécharger ${downloadName}`);
     row.urls.push(link.href);

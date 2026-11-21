@@ -118,10 +118,6 @@ function convert(url, directory, signal, onProgress) {
   })
 }
 
-router.get('/', (req, res) => res.sendFile(join(__dirname, 'index.html')))
-router.get('/style.css', (req, res) => res.sendFile(join(__dirname, 'style.css')))
-router.get('/page.js', (req, res) => res.sendFile(join(__dirname, 'page.js')))
-
 router.post('/convertir', express.json({ limit: '4kb' }), async (req, res, next) => {
   res.set('Cache-Control', 'no-store')
   const url = canonicalVideoUrl(req.body?.url)

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube en MP3 | Club Informatique de Bethoncourt</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <script src="./page.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/"><img src="/assets/logo.png" alt="Club Informatique de Bethoncourt" width="2172" height="724"></a>
+      <a class="button secondary" href="/#services-en-ligne"><span aria-hidden="true">←</span> Tous les outils</a>
+    </div>
+  </header>
+  <main class="wrap tool-page">
+    <div class="tool-heading">
+      <h1>YouTube en MP3</h1>
+      <p class="intro">Collez le lien d’une vidéo YouTube pour en télécharger l’audio au format MP3.</p>
+    </div>
+    <form id="converter" class="panel mp3-form">
+      <label for="video-url">Lien de la vidéo YouTube</label>
+      <input id="video-url" name="url" type="url" maxlength="2048" required
+        placeholder="https://www.youtube.com/watch?v=…"
+        autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="help">
+      <small id="help" class="note">Vidéos publiques et Shorts de 10 minutes maximum.</small>
+      <button class="button primary" type="submit">Convertir en MP3</button>
+      <div id="progress-panel" hidden>
+        <progress id="progress" max="100" aria-label="Progression du traitement"></progress>
+        <span id="progress-value" aria-hidden="true"></span>
+      </div>
+      <p id="status" role="status"></p>
+      <a id="download" class="button secondary" hidden>Télécharger le MP3</a>
+    </form>
+    <p class="note">Utilisez cet outil pour les contenus dont le téléchargement est autorisé.</p>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Club Informatique de Bethoncourt</div>
+  </footer>
+</body>
+</html>
