@@ -1,0 +1,74 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #15243b;
+  background: #f0f4fa;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.2rem max(1.25rem, calc((100vw - 68rem) / 2));
+  background: #fff;
+  border-bottom: 1px solid #dae4f0;
+}
+a { color: #174daf; text-underline-offset: .2em; }
+.brand { font-weight: 750; color: #15243b; text-decoration: none; }
+.brand span { font-weight: 500; }
+main { max-width: 43rem; padding: clamp(2.5rem, 8vw, 6rem) 1.25rem 3rem; margin: auto; }
+.hero { margin-bottom: 2rem; }
+h1 {
+  margin: 0 0 .6rem;
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  letter-spacing: -.055em;
+  line-height: 1.02;
+}
+h1 span { color: #2059c4; }
+.hero p { margin: 0; color: #45576f; font-size: 1.15rem; line-height: 1.55; }
+form {
+  display: grid;
+  gap: .8rem;
+  padding: clamp(1.25rem, 5vw, 2rem);
+  background: #fff;
+  border: 1px solid #d9e3f0;
+  border-radius: 1.25rem;
+  box-shadow: 0 15px 40px #19335b0d;
+}
+label { font-weight: 700; }
+input, button { font: inherit; }
+input {
+  width: 100%;
+  padding: .85rem 1rem;
+  border: 1px solid #97aac2;
+  border-radius: .55rem;
+  color: inherit;
+}
+button, .download {
+  justify-self: start;
+  padding: .8rem 1.1rem;
+  border: 0;
+  border-radius: .55rem;
+  font-weight: 700;
+}
+button { margin-top: .4rem; color: #fff; background: #2059c4; cursor: pointer; }
+button:hover { background: #17469e; }
+button:disabled { opacity: .7; cursor: wait; }
+#progress-panel:not([hidden]) {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+#progress { flex: 1; min-width: 0; height: 1rem; accent-color: #2059c4; }
+#progress-value { color: #334966; font-variant-numeric: tabular-nums; }
+#progress-value:empty { display: none; }
+.download { background: #e4efff; }
+:focus-visible { outline: 3px solid #2059c4; outline-offset: 3px; }
+#status { margin: 0; color: #334966; }
+#status:empty { margin: -.4rem 0; }
+#status[data-error="true"] { color: #a12332; }
+small, .usage { color: #45576f; line-height: 1.5; }
+.usage { font-size: .9rem; }

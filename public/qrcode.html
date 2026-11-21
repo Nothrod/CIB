@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Générateur de QR codes — Club Informatique de Bethoncourt</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #faf9f5;
+      color: #063c47;
+      font: 17px/1.6 Arial, sans-serif;
+    }
+    main { max-width: 1000px; margin: auto; padding: 30px 20px; }
+    a { color: inherit; }
+    header { margin: 30px 0; }
+    h1 { line-height: 1.2; font-size: clamp(30px, 5vw, 44px); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card {
+      background: white;
+      padding: 28px;
+      border: 1px solid #dce2df;
+      border-radius: 20px;
+    }
+    label { display: block; font-weight: bold; margin: 18px 0 8px; }
+    textarea, select, input {
+      max-width: 100%;
+      font: inherit;
+    }
+    textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #aab9bc;
+      border-radius: 10px;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    input[type="color"] { width: 80px; height: 44px; }
+    button {
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #ffcc18;
+      color: #063c47;
+      font: bold 16px Arial, sans-serif;
+      cursor: pointer;
+      margin: 8px 4px 0 0;
+    }
+    button:disabled { opacity: .45; cursor: not-allowed; }
+    :focus-visible { outline: 3px solid #bc8100; outline-offset: 3px; }
+    .preview { text-align: center; }
+    #qr svg { display: block; width: 100%; height: auto; }
+    #qr { max-width: 320px; margin: 0 auto 20px; }
+    .note { font-size: 14px; color: #52676b; }
+    #status { min-height: 26px; }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+  <script src="js/qr-code-styling.js"></script>
+</head>
+<body>
+<main>
+  <a href="/">← Retour au site du club</a>
+  <header>
+    <h1>Votre QR code en quelques clics.</h1>
+    <p>Ajoutez un lien ou un texte, personnalisez votre QR code,
+      puis téléchargez-le gratuitement.</p>
+  </header>
+
+  <div class="grid">
+    <section class="card" aria-label="Personnalisation">
+      <label for="data">Votre lien ou votre texte</label>
+      <textarea id="data" maxlength="500"
+        placeholder="https://www.exemple.fr"></textarea>
+      <p class="note">Pour un site, collez l’adresse complète avec https://.</p>
+
+      <label for="color">Couleur du QR code</label>
+      <input id="color" type="color" value="#063c47">
+      <p class="note">Privilégiez une couleur foncée sur le fond blanc.</p>
+
+      <label for="shape">Forme des points</label>
+      <select id="shape">
+        <option value="square">Carrés</option>
+        <option value="rounded">Arrondis</option>
+        <option value="dots">Ronds</option>
+      </select>
+
+      <label for="logo">Votre logo — facultatif</label>
+      <input id="logo" type="file" accept="image/png,image/jpeg">
+      <p class="note">PNG ou JPG, 2 Mo maximum.</p>
+      <button id="remove" type="button">Retirer le logo</button>
+    </section>
+
+    <section class="card preview" aria-label="Aperçu et téléchargement">
+      <h2>Aperçu</h2>
+      <div id="qr"></div>
+      <p id="status" role="status">Saisissez un lien ou un texte.</p>
+      <button id="png" type="button" disabled>Télécharger PNG</button>
+      <button id="svg" type="button" disabled>Télécharger SVG</button>
+      <p class="note">
+        PNG : pour partager une image.<br>
+        SVG : pour imprimer en haute qualité.
+      </p>
+      <p class="note">
+        Testez votre QR code avec votre téléphone avant de l’imprimer.
+        Votre texte et votre logo sont traités dans votre navigateur.
+      </p>
+    </section>
+  </div>
+</main>
+
+<script>
+  const $ = id => document.getElementById(id);
+  let logo = "";
+  let current = null;
+  let revision = 0;
+  let fileRevision = 0;
+
+  function options() {
+    return {
+      width: 1000,
+      height: 1000,
+      type: "svg",
+      data: $("data").value.trim(),
+      margin: 80,
+      image: logo,
+      qrOptions: { errorCorrectionLevel: "H" },
+      dotsOptions: {
+        color: $("color").value,
+        type: $("shape").value
+      },
+      backgroundOptions: { color: "#ffffff" },
+      imageOptions: {
+        imageSize: 0.25,
+        margin: 10,
+        saveAsBlob: true
+      }
+    };
+  }
+
+  async function refresh() {
+    const version = ++revision;
+    current = null;
+    $("png").disabled = $("svg").disabled = true;
+    $("qr").replaceChildren();
+
+    if (!$("data").value.trim()) {
+      $("status").textContent = "Saisissez un lien ou un texte.";
+      return;
+    }
+
+    $("status").textContent = "Création du QR code…";
+    try {
+      const candidate = new QRCodeStyling(options());
+      await candidate.getRawData("svg");
+      if (version !== revision) return;
+      candidate.append($("qr"));
+      current = candidate;
+      $("png").disabled = $("svg").disabled = false;
+      $("status").textContent = "Votre QR code est prêt.";
+    } catch {
+      if (version !== revision) return;
+      $("status").textContent =
+        "Impossible de créer le QR code. Raccourcissez le texte ou retirez le logo.";
+    }
+  }
+
+  ["data", "color", "shape"].forEach(id => {
+    $(id).addEventListener("input", refresh);
+  });
+
+  $("logo").addEventListener("change", async event => {
+    const version = ++fileRevision;
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!["image/png", "image/jpeg"].includes(file.type) ||
+        file.size > 2 * 1024 * 1024) {
+      event.target.value = "";
+      $("status").textContent = "Choisissez un PNG ou JPG de 2 Mo maximum.";
+      return;
+    }
+
+    try {
+      const result = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      const testImage = new Image();
+      testImage.src = result;
+      await testImage.decode();
+      if (version !== fileRevision) return;
+      logo = result;
+      await refresh();
+    } catch {
+      if (version !== fileRevision) return;
+      $("status").textContent = "Cette image ne peut pas être ouverte.";
+    }
+  });
+
+  $("remove").addEventListener("click", () => {
+    ++fileRevision;
+    logo = "";
+    $("logo").value = "";
+    refresh();
+  });
+
+  ["png", "svg"].forEach(extension => {
+    $(extension).addEventListener("click", async () => {
+      if (!current) return;
+      try {
+        await current.download({ name: "mon-qr-code", extension });
+      } catch {
+        $("status").textContent = "Le téléchargement a échoué. Réessayez.";
+      }
+    });
+  });
+</script>
+</body>
+</html>
