@@ -1,0 +1,62 @@
+.software-hero { display: block; }
+
+.software-guide {
+  margin: clamp(1rem, 3vw, 1.75rem) 0 1rem;
+  padding: .85rem 1rem;
+  border-radius: var(--radius);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.software-card {
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: 1rem;
+}
+
+.software-card h2 { font-size: 1.75rem; }
+.software-card p { margin: .6rem 0 0; color: var(--muted); }
+.software-card .software-category {
+  margin: 0 0 .45rem;
+  color: var(--ink);
+  font-size: .875rem;
+  font-weight: 700;
+}
+
+.platforms, .software-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+}
+
+.platforms { margin: 0; padding: 0; list-style: none; }
+.platforms li {
+  padding: .15rem .65rem;
+  border: 1px solid transparent;
+  border-radius: 2rem;
+  background: var(--soft);
+  font-size: .8rem;
+  font-weight: 650;
+}
+
+.platforms .unavailable {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 400;
+}
+
+@media (max-width: 680px) {
+  .software-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .software-actions > a { width: 100%; }
+}
