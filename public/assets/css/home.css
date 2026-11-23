@@ -25,7 +25,12 @@
 
 .hero h1 span, .visit a { color: var(--yellow); }
 .hero .intro { color: #e0ebeb; }
-.hero .button { margin-top: 1.5rem; }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: 1.5rem;
+}
 
 .visit {
   padding: clamp(1rem, 3vw, 1.65rem);
